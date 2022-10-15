@@ -141,6 +141,13 @@ After we have successfull login and get the jwt token from AAD by the client app
 - **Require Scheme:** _Bearer_
 - **Audiences:** _api://\<APIM APPID>/_ For example: api://1554aabf-40eb-4c83-a85e-748e6190d5a5
 - **Issuers:** _https://sts.windows.net/\<TanentID>/_ For example: https://sts.windows.net/d13ad595-5883-4b3a-a953-bc0f981c0c35/
+- **Required claims:**
+    
+    - Name: `scp`
+    - Match: `All claims`
+    - Separator: `,`
+    - Values: `Post.Read`
+
 - **Open ID URLs:** https://login.microsoftonline.com/\<TanentID>/v2.0/.well-known/openid-configuration
 
 <br/>
@@ -185,4 +192,19 @@ You should see response with error messsage
 ```
 
 3. Test with valid JWT, Perform the test like #2 but this time provide the correct JWT that we get from Demo App when we perform azure login. This time you should see the successful response with some data (depends on your backend APIs)
+
+
+4. Test with other scopes, Navigate back to `Validate JWT` configuration and add `Post.Write` as a required values for claim. Then perform the previous API call again with the valid JWT and check the result
+
+![Scope Authorization](./assets/ananda-apim-test-scope-01.png)
+
+You should see some error return from APIM like this
+
+```json
+{
+  "statusCode": 401,
+  "message": "Invalid JWT."
+}
+```
+
 
