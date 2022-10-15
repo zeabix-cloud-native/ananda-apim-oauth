@@ -1,0 +1,13 @@
+.tokenArea {
+    display: flex;
+    flex-direction: column;
+    flex-flow: row wrap;
+    width: auto;
+    margin: auto;
+}
+
+.tokenCard {
+    width: 45%;
+    margin: 1em;
+    text-align: left;
+}
